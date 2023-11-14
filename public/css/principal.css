@@ -1,0 +1,171 @@
+.main{
+    height: 500px;
+    background-color:#bbdfa1 ;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.249);
+    border: 6px double white
+}
+.esquerdaMain{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    text-align: start;
+}
+.esquerdaMain h2{
+    font-family: 'Playfair Display';
+    font-size: 1.8rem; 
+}
+.esquerdaMain h1{
+    font-size: 2.6rem;
+    font-family: 'Playfair Display';
+}
+.esquerdaMain p{
+    font-family: 'Playfair Display';
+    font-size: 1.2rem;
+}
+.direitaMain{
+    height: 100%;
+    margin: auto;
+}
+.direitaMain figure{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0;
+}
+.direitaMain figure img{
+    border-radius: 50%;
+    border: 3px dashed white;
+}
+.posts{
+    width: 100%;
+}
+.posts h1{
+    text-shadow: 0px 3px 3px rgba(0, 0, 0, 0.216);
+    font-family: 'Playfair Display';
+    font-weight: 900;
+}
+.botao{
+    transition: ease 0.5s;
+    text-decoration: none;
+    color: black;
+    font-family: 'Playfair Display';
+    background-color: white;
+    padding: 0.5rem;
+    border: 2px solid #7e9f67;
+    font-weight: bold;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.249);
+    border-radius: 1rem;
+}
+.botao:hover{
+    transition: ease 0.5s;
+    background-color: lightgray;
+    border-color: #7e9f67;
+}
+.cards{
+    width: 100%;
+    padding: 1rem;
+}
+.card{
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.249);
+    padding: 1rem;
+    background-color: white;
+    width: 30%;
+}
+.card-img-top{
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    height: 250px;
+    width: 100%;
+    border: #bbdfa1 dashed 4px;
+}
+.formulario{
+    width: 50%;
+}
+.formChamado{
+    background: white;
+    width: 100%;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 8px 8px 10px rgba(0, 0, 0, 0.249);
+}
+.pessoaInformacao,.cachorroInformacao{
+    gap: 1rem;
+}
+.formChamado h1{
+    font-weight: 600;
+    font-family: 'Playfair Display';
+}
+.formChamado h2{
+    font-size: 1.5rem;
+}
+.formChamado .inputs{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.inputs input, .inputs textarea, input[type='submit'], .inputs select{
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    resize: none;
+    border: 1px solid lightgray;
+}
+.inputs input::placeholder{
+    font-size: 0.9rem;
+}
+.inputs input:hover, textarea:hover{
+    border: 2px solid black;
+}
+select option[value=""] {
+    color: gray;
+}
+.botaoForm{
+    transition: ease 0.5s;
+    background-color: #7e9f67;
+    font-weight: 600;
+}
+.botaoForm:hover{
+    transition: ease 0.5s;
+    background-color: #3f582d;
+    color: white;
+}
+@media (max-width: 980px){
+    *{
+        font-size: 12px;
+    }
+    .main{
+        height: 650px;
+        justify-content: center;
+        align-items: center;
+    }
+    .esquerdaMain{
+        height: 40%;
+        width: 100%;
+        align-items: center;
+        text-align: center;
+    }
+    .direitaMain{
+        height: 60%;
+    }
+    .direitaMain figure img{
+        width: 350px;
+        height: 350px;
+    }
+    .card{
+        width: 100%;
+    }
+    .formulario{
+        width: 90%;
+    }
+    .cachorroInformacao{
+        padding-top: 1rem;
+    }
+}

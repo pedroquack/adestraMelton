@@ -1,0 +1,50 @@
+.conteudo{
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+.chamado{
+    margin: 1rem;
+    width: 50%;
+    background-color: white;
+    height: 100%;
+    padding: 1.5rem;
+}
+.dados h2{
+    font-size: 1.5rem;
+}
+.descircaoProblema{
+    width: 100%;
+    height: 100%;
+}
+.descricaoProb{
+    width: 100%;
+    height: 100%;
+}
+.descricaoProb p{
+    word-wrap: break-word;
+}
+.chamado p{
+    padding: 0.5rem;
+    border: 1px solid black;
+    font-size: 0.8rem;
+}
+.botao-col{
+    padding: 0.5rem;
+    transition: ease 0.5s;
+    background-color: #7e9f67;
+    font-weight: bold;
+    width: 100%;
+}
+.botao-col:hover{
+    transition: ease 0.5s;
+    background-color: #3f582d;
+    color: white;
+}
+@media(max-width:980px){
+    .chamado{
+        text-align: center;
+        width: 90%;
+    }
+}
