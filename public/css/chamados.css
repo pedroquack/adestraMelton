@@ -1,5 +1,5 @@
 .conteudo{
-    height: 100%;
+    height:100%;
     width: 100%;
     justify-content: center;
     align-items: center;
@@ -42,9 +42,18 @@
     background-color: #3f582d;
     color: white;
 }
+.botao-col span{
+    font-weight: 400;
+}
+.chamadoU form{
+    width: 15%;
+}
 @media(max-width:980px){
     .chamado{
         text-align: center;
         width: 90%;
+    }
+    .chamadoU form{
+        width: 100%;
     }
 }

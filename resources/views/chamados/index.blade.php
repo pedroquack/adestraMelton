@@ -4,7 +4,7 @@
 <div class="conteudo accordion accordion-flush m-5" id="accordionFlushExample">
     @foreach ($dados as $chamado)
     <div class="chamadoU mt-2 accordion-item d-flex flex-column justify-content-center align-items-center">
-        <button class="botao-col accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#chamado{{$chamado->id}}" aria-expanded="false" aria-controls="flush-collapseOne">Chamado {{$chamado->id}}</button>
+        <button class="botao-col accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#chamado{{$chamado->id}}" aria-expanded="false" aria-controls="flush-collapseOne">Chamado de:<span>‎ {{$chamado->nomeTutor}}, para {{$chamado->nomeCachorro}}</span></button>
         <div class="chamado collapse" id="chamado{{$chamado->id}}" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
             <div class="dados row">
                 <div class="dadosTutor col-lg-6 col-12 d-flex flex-column">
@@ -52,6 +52,11 @@
                     <p>{{$chamado->descricao}}</p>
                 </div>
             </div>
+            <form action="{{route('chamado.destroy', $chamado->id)}}" method="post">
+                @csrf
+                @method('DELETE')
+                <input type="submit" value="Remover" class="botao-col">
+            </form>
         </div>
     </div>
     @endforeach

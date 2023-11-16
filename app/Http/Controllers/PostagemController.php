@@ -68,7 +68,7 @@ class PostagemController extends Controller
             $post->foto = $this->path."/".$nome_arq;
             $post->save();
         }
-        return redirect('/');
+        return redirect('/#clientes');
     }
 
     /**
@@ -140,7 +140,7 @@ class PostagemController extends Controller
             $post->descricao = $request->descricao;
             $post->save();
         }
-        return redirect('/');
+        return redirect('/#clientes');
     }
 
     /**
@@ -155,6 +155,6 @@ class PostagemController extends Controller
         if(isset($post)){
             $post->destroy($id);
         }
-        return redirect('/');
+        return redirect('/#clientes');
     }
 }

@@ -2,6 +2,7 @@ form{
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    height: 100%;
 }
 form h1{
     font-weight: bold;
@@ -24,6 +25,9 @@ form h1{
 }
 .inputs input[type=file]{
     border: 1px solid black;
+}
+.inputs #descricao{
+    height: 200px;
 }
 .botao{
     padding: 0.5rem;

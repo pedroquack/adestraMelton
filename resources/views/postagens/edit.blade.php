@@ -5,7 +5,7 @@
     <form action="{{route('postagem.update', $dados->id)}}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
-        <h1 class="text-center">NOVA POSTAGEM</h1>
+        <h1 class="text-center">EDITAR POSTAGEM</h1>
         <div class="inputs">
             <input type="text" name="nome" id="nome" placeholder="Nome" class="@if($errors->has('nome')) is-invalid @endif" value="{{$dados->nome}}">
             @if($errors->has('nome'))
@@ -60,7 +60,7 @@
             @endif
         </div>
         
-        <button type="submit" class="botao">Criar</button>
+        <button type="submit" class="botao">Atualizar</button>
     </form>
 </div>
 

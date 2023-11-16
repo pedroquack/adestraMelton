@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Breed;
 use App\Models\Postagem;    
 use App\Models\Chamado;
+use App\Models\Comentario;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,7 +19,10 @@ use App\Models\Chamado;
 Route::get('/', function () {
     $post = Postagem::orderBy('id')->get();
     $breed = Breed::orderBy('id')->get();
-    return view('site.principal', compact('post','breed'));
+    $comentario = Comentario::orderBy('created_at')->get(); 
+    return view('site.principal', compact('post','breed','comentario'));
 });
+Route::resource('comentario', 'ComentarioController');
 Route::resource('postagem', 'PostagemController');
 Route::resource('chamado', 'ChamadoController');
+

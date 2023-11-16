@@ -68,7 +68,7 @@ class ChamadoController extends Controller
         $chamado->descricao = $request->descricao;
         $chamado->save();
            
-        return redirect('/');
+        return redirect('/#contato');
     }
 
     /**
@@ -113,6 +113,10 @@ class ChamadoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $chamado = Chamado::find($id);
+        if(isset($chamado)){
+            $chamado->destroy($id);
+        }
+        return redirect()->route('chamado.index');
     }
 }
