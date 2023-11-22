@@ -1,0 +1,38 @@
+.formAuth{
+    background-color: white;
+    padding: 2rem;
+    margin: 2rem;
+    border-radius: 0.5rem;
+    text-align: center;
+}
+.formAuth h1{
+    font-size: 2rem;
+    text-shadow: 3px 2px 3px rgba(0, 0, 0, 0.466);
+}
+.formAuth input, .formAuth select{
+    padding: 0.5rem;
+}
+.input{
+    font-size: 1rem;
+}
+.input:hover{
+    border: 2px solid black;
+}
+.input::content{
+    font-size: 0.5rem;
+}
+.remInput{
+    width: 20px;
+}
+.botao{
+    font-weight: 500;
+    transition: ease 0.5s;
+    background-color: #7e9f67;
+    border: 1px solid gray;
+    border-radius: 0.5rem;
+}
+.botao:hover{
+    transition: ease 0.5s;
+    background-color: #3f582d;
+    color: white;
+}

@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 18px;
+    font-family: 'Poppins', sans-serif;
+}
+body, html {
+    overflow-x: hidden !important;
+}
+.navtop{
+    background-color: white;
+    box-shadow: 0px 7px 5px rgba(0, 0, 0, 0.434);
+    width: 100%
+}
+.navtop svg{
+    fill: black;
+}
+.navbot{
+    padding: 1rem;
+    background-color: white;
+    box-shadow: 0px 0px 7px 5px rgba(0, 0, 0, 0.434);
+}
+.body{
+    background-color: rgb(179, 206, 138);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.esquerda{
+    gap: 15px;
+}
+.esquerdaIcone{
+    width: 48px;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
+}
+.esqElement{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: left;
+    gap: 10px;
+}
+.about{
+    text-align: start;
+    width: 70%;
+}
+.aboutTitle{
+    font-size: 1rem;
+}
+.aboutDesc, .aboutDesc a{
+    font-size: 0.8rem;
+}
+.redes{
+    gap: 10px;
+}
+.rede{
+    width: 48px;
+    height: 48px;
+    border: 3px solid #6bbe5b;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.rede:hover{
+    border: 3px solid green;
+}
+
+.rede a{
+    text-decoration: none;
+    color: black;
+}
+.logout{
+    display: flex;
+    width: 100%;
+    text-align: start;
+}
+.dropdown-item:hover{
+    color: black;
+}
+@media (max-width: 980px){
+    .navbot{
+        gap: 15px
+    }
+}

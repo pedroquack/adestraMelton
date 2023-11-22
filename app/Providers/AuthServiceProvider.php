@@ -2,6 +2,15 @@
 
 namespace App\Providers;
 
+use App\Models\Chamado;
+use App\Policies\ChamadoPolicy;
+use App\Models\Relatorio;
+use App\Policies\RelatorioPolicy;
+use App\Models\Postagem;
+use App\Policies\PostagemPolicy;
+use App\Models\Comentario;
+use App\Policies\ComentarioPolicy;
+
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
@@ -13,7 +22,10 @@ class AuthServiceProvider extends ServiceProvider
      * @var array<class-string, class-string>
      */
     protected $policies = [
-        // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+        Chamado::class => ChamadoPolicy::class,
+        Relatorio::class => RelatorioPolicy::class,
+        Postagem::class => PostagemPolicy::class,
+        Comentario::class => ComentarioPolicy::class,
     ];
 
     /**

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Chamado;
 use App\Models\Breed;
 use Illuminate\Http\Request;
+use App\Facades\UserPermissions;
 
 class ChamadoController extends Controller
 {
@@ -12,8 +13,14 @@ class ChamadoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct(){
+        $this->middleware(['auth'])->only('index');
+
+    }
+
     public function index()
     {
+        $this->authorize('viewAny', Chamado::class);
         $dados = Chamado::orderBy('id')->get();
         $breeds = Breed::orderBy('id')->get();
         return view('chamados.index', compact('dados','breeds'));
@@ -56,18 +63,21 @@ class ChamadoController extends Controller
         ];
         $request->validate($regras,$msgs);
 
-        $chamado = new Chamado();
-        $chamado->nomeTutor = $request->nomeTutor;
-        $chamado->telefone = $request->telefone;
-        $chamado->nomeCachorro = $request->nomeCachorro;
-        $chamado->breed_id = $request->breed;
-        $chamado->peso = $request->peso;
-        $chamado->idade = $request->idade;
-        $chamado->pessoas = $request->pessoas;
-        $chamado->animais = $request->animais;
-        $chamado->descricao = $request->descricao;
-        $chamado->save();
-           
+        $obj_breed = Breed::find($request->breed);
+        if(isset($obj_breed)){
+            $chamado = new Chamado();
+            $chamado->nomeTutor = $request->nomeTutor;
+            $chamado->telefone = $request->telefone;
+            $chamado->nomeCachorro = $request->nomeCachorro;
+            $chamado->breed_id = $request->breed;
+            $chamado->breed()->associate($obj_breed);
+            $chamado->peso = $request->peso;
+            $chamado->idade = $request->idade;
+            $chamado->pessoas = $request->pessoas;
+            $chamado->animais = $request->animais;
+            $chamado->descricao = $request->descricao;
+            $chamado->save();
+        }
         return redirect('/#contato');
     }
 
@@ -111,11 +121,11 @@ class ChamadoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Chamado $chamado)
     {
-        $chamado = Chamado::find($id);
+        $this->authorize('delete', $chamado);
         if(isset($chamado)){
-            $chamado->destroy($id);
+            $chamado->delete();
         }
         return redirect()->route('chamado.index');
     }

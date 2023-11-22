@@ -34,7 +34,7 @@
                     </div>
                     <div class="dadosI">
                         <span>Raça:</span>
-                        <p>{{$breeds[$chamado->breed_id - 1]->breed}}</p>
+                        <p>{{$chamado->breed->breed}}</p>
                     </div>
                     <div class="dadosI">
                         <span>Peso:</span>

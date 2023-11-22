@@ -14,6 +14,9 @@ body, html {
     box-shadow: 0px 7px 5px rgba(0, 0, 0, 0.434);
     width: 100%
 }
+.navtop svg{
+    fill: black;
+}
 .navbot{
     padding: 1rem;
     background-color: white;

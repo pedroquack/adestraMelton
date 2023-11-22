@@ -16,7 +16,7 @@
         <div class="racapeso row">
             <div class="inputs col-lg-6 col-12">
                 <select name="breed" id="breed" class="@if($errors->has('breed')) is-invalid @endif">
-                    <option value="" select>Raça</option>
+                    <option value="1" select>Sem raça definida</option>
                     @foreach ($breeds as $item)
                         <option value="{{$item->id}}">{{$item->breed}}</option>
                     @endforeach
@@ -37,11 +37,11 @@
             </div>
         </div>
         <div class="inputs">
-            <textarea name="descricao" id="descricao" class="@if($errors->has('peso')) is-invalid @endif" placeholder="Descrição">{{old('descricao')}}</textarea>
+            <textarea name="descricao" id="descricao" class="@if($errors->has('descricao')) is-invalid @endif" placeholder="Descrição">{{old('descricao')}}</textarea>
             @if($errors->has('descricao'))
-                        <div class='invalid-feedback'>
-                            {{ $errors->first('descricao') }}
-                        </div>
+                <div class='invalid-feedback'>
+                    {{ $errors->first('descricao') }}
+                </div>
             @endif
         </div>
         <div class="inputs">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Postagem;
 use App\Models\Breed;
 use Illuminate\Http\Request;
+use App\Facades\UserPermissions;
 
 class PostagemController extends Controller
 {   
@@ -13,6 +14,11 @@ class PostagemController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct(){
+        $this->authorizeResource(Postagem::class, 'postagem');
+    }
+
     public function index()
     {
         $dados = Postagem::orderBy('id')->get();
@@ -26,7 +32,7 @@ class PostagemController extends Controller
      */
     public function create()
     {
-        $breeds = Breed::orderBy('id')->get();
+        $breeds = Breed::orderBy('breed')->get();
         return view('postagens.create', compact('breeds'));
     }
 
@@ -52,21 +58,24 @@ class PostagemController extends Controller
             "min" => "Tamanho mínimo de [:min] caracteres!",
         ];
         $request->validate($regras,$msgs);
+        $obj_breed = Breed::find($request->breed);
+        if(isset($obj_breed)){
+            if($request->hasFile('foto')){
+                $post = new Postagem();
+                $post->nome = $request->nome;
+                $post->breed_id = $request->breed;
+                $post->breed()->associate($obj_breed);
+                $post->peso = $request->peso;
+                $post->descricao = $request->descricao;
+                $post->save();
 
-        if($request->hasFile('foto')){
-            $post = new Postagem();
-            $post->nome = $request->nome;
-            $post->breed_id = $request->breed;
-            $post->peso = $request->peso;
-            $post->descricao = $request->descricao;
-            $post->save();
-
-            $id = $post->id;
-            $extensao_arq = $request->file('foto')->getClientOriginalExtension();
-            $nome_arq = $id.'_'.time().'.'.$extensao_arq;
-            $request->file('foto')->storeAs("public/$this->path", $nome_arq);
-            $post->foto = $this->path."/".$nome_arq;
-            $post->save();
+                $id = $post->id;
+                $extensao_arq = $request->file('foto')->getClientOriginalExtension();
+                $nome_arq = $id.'_'.time().'.'.$extensao_arq;
+                $request->file('foto')->storeAs("public/$this->path", $nome_arq);
+                $post->foto = $this->path."/".$nome_arq;
+                $post->save();
+            }
         }
         return redirect('/#clientes');
     }
@@ -88,11 +97,10 @@ class PostagemController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Postagem $postagem)
     {
-        $dados = Postagem::find($id);
-        $breeds = Breed::orderBy('id')->get();
-        return view('postagens.edit',compact('dados','breeds'));
+        $breeds = Breed::orderBy('breed')->get();
+        return view('postagens.edit',compact('postagem','breeds'));
     }
 
     /**
@@ -102,7 +110,7 @@ class PostagemController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Postagem $postagem)
     {
         $regras = [
             'nome' => 'required|max:100|min:2',
@@ -117,28 +125,27 @@ class PostagemController extends Controller
             "min" => "Tamanho mínimo de [:min] caracteres!",
         ];
         $request->validate($regras,$msgs);
+        if(isset($postagem)){
+            if($request->hasFile('foto')){
+                $postagem->nome = $request->nome;
+                $postagem->breed_id = $request->breed;
+                $postagem->peso = $request->peso;
+                $postagem->descricao = $request->descricao;
+                $postagem->save();
 
-        if($request->hasFile('foto')){
-            $post = Postagem::find($id);
-            $post->nome = $request->nome;
-            $post->breed_id = $request->breed;
-            $post->peso = $request->peso;
-            $post->descricao = $request->descricao;
-            $post->save();
-
-            $id = $post->id;
-            $extensao_arq = $request->file('foto')->getClientOriginalExtension();
-            $nome_arq = $id.'_'.time().'.'.$extensao_arq;
-            $request->file('foto')->storeAs("public/$this->path", $nome_arq);
-            $post->foto = $this->path."/".$nome_arq;
-            $post->save();
-        }else{
-            $post = Postagem::find($id);
-            $post->nome = $request->nome;
-            $post->breed_id = $request->breed;
-            $post->peso = $request->peso;
-            $post->descricao = $request->descricao;
-            $post->save();
+                $id = $postagem->id;
+                $extensao_arq = $request->file('foto')->getClientOriginalExtension();
+                $nome_arq = $id.'_'.time().'.'.$extensao_arq;
+                $request->file('foto')->storeAs("public/$this->path", $nome_arq);
+                $postagem->foto = $this->path."/".$nome_arq;
+                $postagem->save();
+            }else{
+                $postagem->nome = $request->nome;
+                $postagem->breed_id = $request->breed;
+                $postagem->peso = $request->peso;
+                $postagem->descricao = $request->descricao;
+                $postagem->save();
+            }
         }
         return redirect('/#clientes');
     }
@@ -149,11 +156,10 @@ class PostagemController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Postagem $postagem)
     {
-        $post = Postagem::find($id);
-        if(isset($post)){
-            $post->destroy($id);
+        if(isset($postagem)){
+            $postagem->delete();
         }
         return redirect('/#clientes');
     }

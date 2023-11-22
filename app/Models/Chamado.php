@@ -9,6 +9,6 @@ class Chamado extends Model
 {
     use HasFactory;
     public function breed(){
-        return $this->hasOne('App\Models\Breed');
+        return $this->belongsTo('App\Models\Breed');
     }
 }
